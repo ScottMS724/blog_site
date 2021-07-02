@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 #index
 def starting_page(request):
-    pass 
+    return render(request, "main_blog/index.html") 
 
 def posts(request):
     pass 
