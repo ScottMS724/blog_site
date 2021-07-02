@@ -1,9 +1,51 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
     My Blog 
 {% endblock %}
 
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "main_blog/index.css" %}" />
+{% endblock %}
+
 {% block content %}
-    <h1>Welcome to my blog.</h1>
+  <header id="main-navigation">
+    <h1><a href="">Scott's Blog</a></h1>
+      <nav>
+        <a href="">All Posts</a>
+      </nav>
+  </header>
+
+  <section id="welcome">
+    <header>
+      <img src="" alt="Scott - author of this blog" />
+        <h2>Scott's Blog</h2>
+          </header>
+        <p>Hi, I'm Scott and this is my blog about tech and how it's changing the world.</p> 
+  </section>
+
+  <section id="latest-posts">
+    <h2>My Latest Thoughts</h2>
+
+      <ul>
+        <li>
+          <article class="post">
+            <a href="">
+              <img src="" alt="Mountain Hiking" />
+              <div class="post__content">
+                <h3>Mountain Hiking</h3>
+                <p>There's nothing like the views you get when hiking in the mountains.</p> 
+              </div>
+            </a>
+          </article>
+        </li>
+      </ul>
+  </section>
+
+  <section id="about">
+    <h2>What I Do</h2> 
+    <p>I love programming, weight lifting, and video games.</p> 
+    <p>My goal is to keep on growing as a developer. Hopefully I can inspire others to do the same.</p> 
+  </section>
 {% endblock %}
