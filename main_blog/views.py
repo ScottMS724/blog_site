@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from datetime import date
 
-posts = [
+all_posts = [
     {
-        "slug": "hike-in-the-mountains",
+        "slug": "mountain-view",
         "image": "mountainview.jpg",
         "author": "Scott",
         "date": date(2021, 7, 21),
@@ -25,7 +25,7 @@ posts = [
     },
     {
         "slug": "programming-is-fun",
-        "image": "coding.jpg",
+        "image": "code.jpg",
         "author": "Scott",
         "date": date(2022, 3, 10),
         "title": "Programming is fun.",
@@ -46,11 +46,11 @@ posts = [
     },
     {
         "slug": "into-the-woods",
-        "image": "woods.jpg",
+        "image": "woods.jpeg",
         "author": "Scott",
         "date": date(2020, 8, 5),
-        "title": "The woods give off a mysterious aura.",
-        "excerpt": "Nature is amazing. Humanity must respect it and work to preserve it.",
+        "title": "The Tranquil Woods",
+        "excerpt": "The woods seem to give off a mysterious aura.",
         "content": """
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis
           aperiam est praesentium, quos iste consequuntur omnis exercitationem quam
@@ -67,11 +67,16 @@ posts = [
     }
 ]
 
-# Create your views here.
+def get_date(post): 
+  return post['date']
 
 #index
 def starting_page(request):
-    return render(request, "main_blog/index.html") 
+    sorted_posts = sorted(all_posts, key=get_date)
+    latest_posts = sorted_posts[-3:]
+    return render(request, "main_blog/index.html", {
+      "posts": latest_posts  
+    }) 
 
 def posts(request):
     return render(request, "main_blog/all-posts.html")
