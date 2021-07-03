@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    This Post's Title 
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "main_blog/post-details.css" %}" />
+{% endblock %}
+
+{% block content %}
+  <section id="summary">
+    <h2>Post Title</h2>
+    <article>
+      <img src="{% static "main_blog/images/mountainview.jpg" %}" alt="Post Title" /> 
+      <address>By Scott</address>
+      <div>
+        Last updated on <time>July 3rd</time> 
+      </div>
+    </article>
+  </section>
+
+  <main>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate itaque ipsam, 
+      consectetur expedita voluptatibus maiores repellat dolore, 
+      laborum accusantium quaerat placeat amet molestiae 
+      ducimus optio doloribus rem modi beatae unde?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate itaque ipsam, 
+      consectetur expedita voluptatibus maiores repellat dolore, 
+      laborum accusantium quaerat placeat amet molestiae 
+      ducimus optio doloribus rem modi beatae unde?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate itaque ipsam, 
+      consectetur expedita voluptatibus maiores repellat dolore, 
+      laborum accusantium quaerat placeat amet molestiae 
+      ducimus optio doloribus rem modi beatae unde?
+    </p>
+  </main>
+{% endblock %}
