@@ -70,7 +70,7 @@ all_posts = [
 def get_date(post): 
   return post['date']
 
-#index
+#homepage
 def starting_page(request):
     sorted_posts = sorted(all_posts, key=get_date)
     latest_posts = sorted_posts[-3:]
@@ -78,8 +78,15 @@ def starting_page(request):
       "posts": latest_posts  
     }) 
 
+#index
 def posts(request):
-    return render(request, "main_blog/all-posts.html")
+    return render(request, "main_blog/all-posts.html", {
+      "all_posts": all_posts 
+    })
 
+#post show page
 def post_detail(request, slug):
-    return render(request, "main_blog/post-details.html")
+    identified_post = next(post for post in all_posts if post['slug'] == slug)
+    return render(request, "main_blog/post-details.html", {
+      "post": identified_post 
+    })
