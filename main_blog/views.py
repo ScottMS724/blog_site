@@ -1,24 +1,32 @@
 from django.shortcuts import render, get_object_or_404 
+from django.views.generic import ListView, DetailView 
 from .models import Post
 
-#homepage
-def starting_page(request): 
-    latest_posts = Post.objects.all().order_by("-date")[:3]
-    return render(request, "main_blog/index.html", {
-      "posts": latest_posts  
-    }) 
+#homepage with 3 most recent posts
+class StartingPageView(ListView):
+  template_name = "main_blog/index.html"
+  model = Post 
+  ordering = ["-date"]
+  context_object_name = "posts"
 
-#post index
-def posts(request):
-    all_posts = Post.objects.all().order_by("-date")
-    return render(request, "main_blog/all-posts.html", {
-       "all_posts": all_posts
-    })
+  def get_queryset(self):
+    queryset = super().get_queryset()
+    data = queryset[:3]
+    return data 
 
-#post show page
-def post_detail(request, slug):
-    identified_post = get_object_or_404(Post, slug=slug)
-    return render(request, "main_blog/post-details.html", {
-      "post": identified_post,
-      "post_tags": identified_post.tags.all()
-    })
+#post index- all posts 
+class AllPostsView(ListView):
+  template_name = "main_blog/all-posts.html"
+  model = Post 
+  ordering = ["-date"]
+  context_object_name = "all_posts" 
+
+#single post show page
+class SinglePostView(DetailView):
+  template_name = "main_blog/post-details.html"
+  model = Post 
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["post_tags"] = self.object.tags.all() 
+    return context
