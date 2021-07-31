@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-y&gp6mc44trdmzpqqp+1b1028n)ve$dny3ehfc#iyzqyaxr54g
 DEBUG = getenv("IS_PRODUCTION", True)
 
 ALLOWED_HOSTS = [
-  getenv("APP_HOST", "localhost", ".vercel.app")
+  getenv(".vercel.app", "localhost")
 ]
 
 
